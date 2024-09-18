@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/drivewaydetailing/static/css/main.446f4dbb.css",
+    "main.js": "/drivewaydetailing/static/js/main.352fbfec.js",
+    "index.html": "/drivewaydetailing/index.html",
+    "main.446f4dbb.css.map": "/drivewaydetailing/static/css/main.446f4dbb.css.map",
+    "main.352fbfec.js.map": "/drivewaydetailing/static/js/main.352fbfec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.446f4dbb.css",
+    "static/js/main.352fbfec.js"
+  ]
+}
