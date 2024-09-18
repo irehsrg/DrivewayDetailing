@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dwdetail.com/static/css/main.446f4dbb.css",
-    "main.js": "/dwdetail.com/static/js/main.352fbfec.js",
+    "main.js": "/dwdetail.com/static/js/main.c8bc7ccc.js",
     "index.html": "/dwdetail.com/index.html",
     "main.446f4dbb.css.map": "/dwdetail.com/static/css/main.446f4dbb.css.map",
-    "main.352fbfec.js.map": "/dwdetail.com/static/js/main.352fbfec.js.map"
+    "main.c8bc7ccc.js.map": "/dwdetail.com/static/js/main.c8bc7ccc.js.map"
   },
   "entrypoints": [
     "static/css/main.446f4dbb.css",
-    "static/js/main.352fbfec.js"
+    "static/js/main.c8bc7ccc.js"
   ]
 }
