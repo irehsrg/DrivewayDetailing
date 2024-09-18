@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/drivewaydetailing/static/css/main.446f4dbb.css",
-    "main.js": "/drivewaydetailing/static/js/main.352fbfec.js",
-    "index.html": "/drivewaydetailing/index.html",
-    "main.446f4dbb.css.map": "/drivewaydetailing/static/css/main.446f4dbb.css.map",
-    "main.352fbfec.js.map": "/drivewaydetailing/static/js/main.352fbfec.js.map"
+    "main.css": "/dwdetail.com/static/css/main.446f4dbb.css",
+    "main.js": "/dwdetail.com/static/js/main.352fbfec.js",
+    "index.html": "/dwdetail.com/index.html",
+    "main.446f4dbb.css.map": "/dwdetail.com/static/css/main.446f4dbb.css.map",
+    "main.352fbfec.js.map": "/dwdetail.com/static/js/main.352fbfec.js.map"
   },
   "entrypoints": [
     "static/css/main.446f4dbb.css",
