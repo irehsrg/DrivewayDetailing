@@ -1,8 +1,8 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Masonry from 'react-masonry-css';
-import '../Gallery.css';
 
 const Gallery = () => {
   const galleryItems = [
@@ -36,6 +36,17 @@ const Gallery = () => {
   };
 
   return (
+    <>
+    <Helmet>
+    <title>Car Detailing Gallery | Driveway Detailing in Cookeville, TN</title>
+    <meta name="description" content="View our gallery of professional car detailing results. See the before and after transformations of exterior and interior detailing, headlight restoration, and more." />
+    <meta name="keywords" content="car detailing gallery, before and after, detailing results, Cookeville TN" />
+    <link rel="canonical" href="https://dwdetail.com/gallery" />
+    <meta property="og:title" content="Car Detailing Gallery | Driveway Detailing in Cookeville, TN" />
+    <meta property="og:description" content="View our gallery of professional car detailing results. See the before and after transformations of exterior and interior detailing, headlight restoration, and more." />
+    <meta property="og:url" content="https://dwdetail.com/gallery" />
+    <meta property="og:type" content="website" />
+  </Helmet>
     <div style={{
       backgroundColor: '#1a1a1a',
       minHeight: '100vh',
@@ -74,6 +85,7 @@ const Gallery = () => {
       </div>
       <Footer />
     </div>
+    </>
   );
 };
 

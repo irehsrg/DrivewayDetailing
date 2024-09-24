@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaCarSide, FaSprayCan, FaWindowMaximize, FaTachometerAlt, FaCar, FaWind } from 'react-icons/fa';
@@ -134,7 +135,7 @@ const AddonCard = ({ name, price, description }) => (
 );
 
 const Services = () => {
-  const [selectedSize, setSelectedSize] = useState('compact');
+  const [selectedSize, setSelectedSize] = useState('midsize');
 
   const services = [
     {
@@ -173,35 +174,17 @@ const Services = () => {
   ];
 
   const vehicleSizes = [
-    { value: 'minicompact', label: 'Minicompact' },
-    { value: 'subcompact', label: 'Subcompact' },
-    { value: 'compact', label: 'Compact' },
+    { value: 'small', label: 'Small' },
     { value: 'midsize', label: 'Mid-size' },
     { value: 'large', label: 'Large' },
   ];
 
   const pricingData = {
-    minicompact: {
+    small: {
       prices: {
         inside: { Stage1: 50, Stage2: 70, Stage3: 90, Stage4: 110 },
         outside: { Stage1: 60, Stage2: 80, Stage3: 100, Stage4: 120 },
         full: { Stage1: 100, Stage2: 140, Stage3: 180, Stage4: 220 },
-      },
-      services: ["Vacuuming", "Dashboard Cleaning", "Window Cleaning", "Air Freshener", "Exterior Wash", "Tire Shine"]
-    },
-    subcompact: {
-      prices: {
-        inside: { Stage1: 55, Stage2: 75, Stage3: 95, Stage4: 115 },
-        outside: { Stage1: 65, Stage2: 85, Stage3: 105, Stage4: 125 },
-        full: { Stage1: 110, Stage2: 150, Stage3: 190, Stage4: 230 },
-      },
-      services: ["Vacuuming", "Dashboard Cleaning", "Window Cleaning", "Air Freshener", "Exterior Wash", "Tire Shine"]
-    },
-    compact: {
-      prices: {
-        inside: { Stage1: 60, Stage2: 80, Stage3: 100, Stage4: 120 },
-        outside: { Stage1: 70, Stage2: 90, Stage3: 110, Stage4: 130 },
-        full: { Stage1: 120, Stage2: 160, Stage3: 200, Stage4: 240 },
       },
       services: ["Vacuuming", "Dashboard Cleaning", "Window Cleaning", "Air Freshener", "Exterior Wash", "Tire Shine"]
     },
@@ -230,136 +213,119 @@ const Services = () => {
   ];
 
     return (
-    <div style={{
-      backgroundColor: '#1a1a1a',
-      minHeight: '100vh',
-      backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3))',
-      backgroundAttachment: 'fixed',
-      display: 'flex',
-      flexDirection: 'column',
-      fontFamily: "'Times New Roman', sans-serif",
-    }}>
-      <Navbar />
-      <div style={{
-        flex: 1,
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '4rem 20px',
-      }}>
-        <h1 style={{
-          fontSize: '3.5rem',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginTop: '3rem',
-          marginBottom: '3rem',
-          color: '#ffffff',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-        }}>Our Detailing Services</h1>
-        {services.map((service, index) => (
-          <ServiceCard key={index} {...service} />
-        ))}
-
-        <h2 style={{
-          fontSize: '3.8rem',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginTop: '5rem',
-          marginBottom: '3rem',
-          color: '#ffffff',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-        }}>Detailing Packages and Pricing</h2>
-
-        <div style={{ 
-          maxWidth: '300px', 
-          margin: '0 auto 3rem auto',
-        }}>
-          <select 
-            value={selectedSize}
-            onChange={(e) => setSelectedSize(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              fontSize: '1.5rem',
-              borderRadius: '8px',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              color: '#ffffff',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
-              appearance: 'none',
-              backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'right 1rem center',
-              backgroundSize: '1em',
-            }}
-          >
-            {vehicleSizes.map((size) => (
-              <option key={size.value} value={size.value} style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                color: '#ffffff',
-              }}>{size.label}</option>
-            ))}
-          </select>
-        </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '2rem',
-          marginBottom: '5rem',
-        }}>
-          {pricingData[selectedSize] && (
-            <PricingCard 
-              vehicleSize={vehicleSizes.find(size => size.value === selectedSize).label}
-              prices={pricingData[selectedSize].prices}
-              services={pricingData[selectedSize].services}
-            />
-          )}
-        </div>
-
-        <h3 style={{
-          fontSize: '2.4rem',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '3rem',
-          color: '#ffffff',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-        }}>Add-on Services</h3>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '2rem',
-        }}>
-          {addons.map((addon, index) => (
-            <AddonCard key={index} {...addon} />
+      <>
+      <Helmet>
+        <title>Car Detailing Services | Driveway Detailing in Cookeville, TN</title>
+        <meta name="description" content="Explore our professional car detailing services in Cookeville, TN. From exterior and interior detailing to headlight restoration, I offer customized packages for all vehicle sizes." />
+        <meta name="keywords" content="car detailing services, exterior detailing, interior detailing, headlight restoration, Cookeville TN" />
+        <link rel="canonical" href="https://dwdetail.com/services" />
+        <meta property="og:title" content="Car Detailing Services | Driveway Detailing in Cookeville, TN" />
+        <meta property="og:description" content="Explore our professional car detailing services in Cookeville, TN. From exterior and interior detailing to headlight restoration, I offer customized packages for all vehicle sizes." />
+        <meta property="og:url" content="https://dwdetail.com/services" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "serviceType": "Car Detailing",
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Driveway Detailing",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Cookeville",
+                  "addressRegion": "TN",
+                  "addressCountry": "US"
+                }
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Cookeville"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Car Detailing Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Exterior Detailing"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Interior Detailing"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Headlight Restoration"
+                    }
+                  }
+                ]
+              }
+            }
+          `}
+        </script>
+      </Helmet>
+      <div className="services-page">
+        <Navbar />
+        <div className="services-container">
+          <h1>Our Detailing Services</h1>
+          {services.map((service, index) => (
+            <ServiceCard key={index} {...service} />
           ))}
-        </div>
 
-        <div style={{
-        textAlign: 'center',
-        marginTop: '4rem',
-      }}>
-        <a 
-        style={{
-          fontFamily: "arial",
-          backgroundColor: '#0094ff',
-          color: '#ffffff',
-          padding: '1rem 2rem',
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          border: 'none',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          transition: 'background-color 0.3s ease',
-        }}
-        href="https://squareup.com/appointments/book/o2ujm7vaufvhbc/LJEE0W1TJ1XZY/start" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="btn btn-secondary">
-          Book Now</a>
+          <h2>Detailing Packages and Pricing</h2>
+
+          <div className="vehicle-size-selector">
+            <select 
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+            >
+              {vehicleSizes.map((size) => (
+                <option key={size.value} value={size.value}>{size.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="pricing-container">
+            {pricingData[selectedSize] && (
+              <PricingCard 
+                vehicleSize={vehicleSizes.find(size => size.value === selectedSize).label}
+                prices={pricingData[selectedSize].prices}
+                services={pricingData[selectedSize].services}
+              />
+            )}
+          </div>
+
+          <h3>Add-on Services</h3>
+
+          <div className="addons-container">
+            {addons.map((addon, index) => (
+              <AddonCard key={index} {...addon} />
+            ))}
+          </div>
+
+          <div className="book-now-container">
+            <a 
+              href="https://squareup.com/appointments/book/o2ujm7vaufvhbc/LJEE0W1TJ1XZY/start" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-tertiary">
+              Book Now
+            </a>
+          </div>
+        </div>
+        <Footer />
       </div>
-      </div>
-      <Footer />
-    </div>
+  </>
   );
 }
 
