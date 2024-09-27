@@ -105,19 +105,19 @@ const Services = () => {
 
   const pricingData = {
     small: {
-      exterior_interior: 100,
-      exterior_only: 60,
-      interior_only: 50
+      exterior_interior: 150,
+      exterior_only: 100,
+      interior_only: 70
     },
     mid_sized: {
-      exterior_interior: 130,
-      exterior_only: 75,
-      interior_only: 65
+      exterior_interior: 200,
+      exterior_only: 120,
+      interior_only: 100
     },
     large: {
-      exterior_interior: 140,
-      exterior_only: 80,
-      interior_only: 70
+      exterior_interior: 260,
+      exterior_only: 180,
+      interior_only: 120
     }
   };
 
