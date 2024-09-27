@@ -40,7 +40,7 @@ const Home = () => {
               "sameAs": [
                 "https://x.com/DwDetail",
                 "https://www.instagram.com/drivewaydetailing.tn/",
-                "YOUR_FACEBOOK_URL"
+                "https://www.facebook.com/profile.php?id=61566610701668"
               ],
               "openingHoursSpecification": [
                 {
@@ -75,7 +75,7 @@ const Home = () => {
         <Navbar/>
         <div className="social-media-sidebar">
           <a href="https://www.instagram.com/drivewaydetailing.tn/" aria-label="Instagram"><FaInstagram /></a>
-          <a href="https://x.com/DwDetail" aria-label="Facebook"><FaFacebookF /></a>
+          <a href="https://www.facebook.com/profile.php?id=61566610701668" aria-label="Facebook"><FaFacebookF /></a>
           <a href="https://x.com/DwDetail" aria-label="Twitter"><FaTwitter /></a>
         </div>
         <div className="home-content">

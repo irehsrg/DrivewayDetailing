@@ -1,85 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { FaCarSide, FaSprayCan, FaWindowMaximize, FaTachometerAlt, FaCar, FaWind } from 'react-icons/fa';
-import { GiVacuumCleaner } from "react-icons/gi";
+import ServiceCard from '../components/ServiceCard';
 
-const ServiceCard = ({ title, description, imageSrc, features }) => (
-  <div className="service-card" style={{
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    margin: '0 auto 4rem auto',
-    maxWidth: '1000px',
-    padding: '2rem',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: '12px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-  }}>
-    <div className="service-content" style={{
-      flex: '1',
-      paddingRight: '2rem'
-    }}>
-      <h2 style={{fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0094ff'}}>{title}</h2>
-      <p style={{marginBottom: '1rem', color: '#ffffff', fontSize: '1.2rem'}}>{description}</p>
-      <ul style={{listStyleType: 'none', paddingLeft: '0'}}>
-        {features.map((feature, index) => (
-          <li key={index} style={{marginBottom: '0.75rem', color: '#ffffff', fontSize: '1.4rem'}}>
-            <span style={{color: '#0094ff', marginRight: '0.5rem'}}>•</span>
-            {feature}
-          </li>
-        ))}
-      </ul>
-    </div>
-    <div className="service-image" style={{flex: '1', textAlign: 'center'}}>
-      <img 
-        src={imageSrc} 
-        alt={title} 
-        style={{
-          width: '100%',
-          maxWidth: '500px',
-          height: 'auto',
-          objectFit: 'cover',
-          borderRadius: '8px',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-        }}
-      />
-    </div>
-  </div>
-);
-
-const getServiceIcon = (service) => {
-  switch (service.toLowerCase()) {
-    case 'vacuuming': return <GiVacuumCleaner color="#0094ff" />;
-    case 'dashboard cleaning': return <FaSprayCan color="#0094ff" />;
-    case 'window cleaning': return <FaWindowMaximize color="#0094ff" />;
-    case 'exterior wash': return <FaCar color="#0094ff" />;
-    case 'tire shine': return <FaTachometerAlt color="#0094ff" />;
-    case 'air freshener': return <FaWind color="#0094ff" />;
-    default: return <FaCarSide color="#0094ff" />;
-  }
-};
-
-const ServiceList = ({ services, title }) => (
-  <div style={{ marginBottom: '1rem' }}>
-    <h5 style={{ color: '#0094ff', marginBottom: '0.5rem', fontSize: '2rem' }}>{title}</h5>
-    <ul style={{ listStyleType: 'none', paddingLeft: '0', marginTop: '0.5rem' }}>
-      {services.map((service, index) => (
-        <li key={index} style={{ marginBottom: '0.5rem', color: '#ffffff', display: 'flex', alignItems: 'center' }}>
-          {getServiceIcon(service)}
-          <span style={{ marginLeft: '0.5rem', fontSize: '1.1rem' }}>{service}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
-const PricingCard = ({ vehicleSize, prices }) => {
-  const insideServices = ['Vacuuming', 'Dashboard Cleaning', 'Window Cleaning', 'Air Freshener'];
-  const outsideServices = ['Exterior Wash', 'Tire Shine', 'Sealant Application', 'Clay Bar Treatment', 'Headlight Restoration'];
+const PricingCard = ({ prices }) => {
+  const serviceTypes = ['Exterior + Interior', 'Exterior Only', 'Interior Only'];
+  const vehicleSizes = ['Small', 'Mid-sized', 'Large'];
 
   return (
     <div style={{
@@ -94,23 +21,28 @@ const PricingCard = ({ vehicleSize, prices }) => {
       alignItems: 'center',
       textAlign: 'center',
     }}>
-      <h3 style={{ fontSize: '2.8rem', fontWeight: 'bold', color: '#0094ff', marginBottom: '1.5rem' }}>{vehicleSize}</h3>
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: '1.5rem' }}>
-        {['inside', 'outside', 'full'].map((type) => (
-          <div key={type} style={{ flex: 1, margin: '0 0.5rem' }}>
-            <h4 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '1.6rem', textTransform: 'capitalize' }}>{type} Detail</h4>
-            {prices[type] && Object.entries(prices[type]).map(([stage, price]) => (
-              <p key={stage} style={{ color: '#ffffff', marginBottom: '0.5rem', fontSize: '1.4rem' }}>
-                <span style={{ color: '#0094ff' }}>{stage}:</span> ${price}
-              </p>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={{ color: '#0094ff', fontSize: '1.8rem', padding: '0.5rem', borderBottom: '1px solid #0094ff' }}></th>
+            {vehicleSizes.map((size) => (
+              <th key={size} style={{ color: '#0094ff', fontSize: '1.8rem', padding: '0.5rem', borderBottom: '1px solid #0094ff' }}>{size}</th>
             ))}
-          </div>
-        ))}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-        <ServiceList services={insideServices} title="Inside Services" />
-        <ServiceList services={outsideServices} title="Outside Services" />
-      </div>
+          </tr>
+        </thead>
+        <tbody>
+          {serviceTypes.map((type) => (
+            <tr key={type}>
+              <td style={{ color: '#ffffff', fontSize: '1.4rem', padding: '0.5rem', textAlign: 'left', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>{type}</td>
+              {vehicleSizes.map((size) => (
+                <td key={size} style={{ color: '#ffffff', fontSize: '1.4rem', padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  ${prices[size.toLowerCase().replace('-', '_')][type.toLowerCase().replace(/ \+ /g, '_').replace(/ /g, '_')]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
@@ -135,8 +67,6 @@ const AddonCard = ({ name, price, description }) => (
 );
 
 const Services = () => {
-  const [selectedSize, setSelectedSize] = useState('midsize');
-
   const services = [
     {
       title: "Exterior Detailing",
@@ -173,47 +103,30 @@ const Services = () => {
     }
   ];
 
-  const vehicleSizes = [
-    { value: 'small', label: 'Small' },
-    { value: 'midsize', label: 'Mid-size' },
-    { value: 'large', label: 'Large' },
-  ];
-
   const pricingData = {
     small: {
-      prices: {
-        inside: { Stage1: 50, Stage2: 70, Stage3: 90, Stage4: 110 },
-        outside: { Stage1: 60, Stage2: 80, Stage3: 100, Stage4: 120 },
-        full: { Stage1: 100, Stage2: 140, Stage3: 180, Stage4: 220 },
-      },
-      services: ["Vacuuming", "Dashboard Cleaning", "Window Cleaning", "Air Freshener", "Exterior Wash", "Tire Shine"]
+      exterior_interior: 100,
+      exterior_only: 60,
+      interior_only: 50
     },
-    midsize: {
-      prices: {
-        inside: { Stage1: 65, Stage2: 85, Stage3: 105, Stage4: 125 },
-        outside: { Stage1: 75, Stage2: 95, Stage3: 115, Stage4: 135 },
-        full: { Stage1: 130, Stage2: 170, Stage3: 210, Stage4: 250 },
-      },
-      services: ["Vacuuming", "Dashboard Cleaning", "Window Cleaning", "Air Freshener", "Exterior Wash", "Tire Shine"]
+    mid_sized: {
+      exterior_interior: 130,
+      exterior_only: 75,
+      interior_only: 65
     },
     large: {
-      prices: {
-        inside: { Stage1: 70, Stage2: 90, Stage3: 110, Stage4: 130 },
-        outside: { Stage1: 80, Stage2: 100, Stage3: 120, Stage4: 140 },
-        full: { Stage1: 140, Stage2: 180, Stage3: 220, Stage4: 260 },
-      },
-      services: ["Vacuuming", "Dashboard Cleaning", "Window Cleaning", "Air Freshener", "Exterior Wash", "Tire Shine"]
-    },
+      exterior_interior: 140,
+      exterior_only: 80,
+      interior_only: 70
+    }
   };
 
   const addons = [
-    { name: "Exterior Plastic Restoration", price: 50, description: "Restore faded plastic trim to like-new condition" },
-    { name: "Headlight Restoration", price: 80, description: "Improve visibility and appearance of cloudy headlights" },
-    { name: "Engine Bay Cleaning", price: 70, description: "Detailed cleaning of the engine compartment" },
+    { name: "Headlight Restoration", price: 60, description: "Improve visibility and appearance of cloudy headlights" }
   ];
 
-    return (
-      <>
+  return (
+    <>
       <Helmet>
         <title>Car Detailing Services | Driveway Detailing in Cookeville, TN</title>
         <meta name="description" content="Explore our professional car detailing services in Cookeville, TN. From exterior and interior detailing to headlight restoration, I offer customized packages for all vehicle sizes." />
@@ -284,25 +197,8 @@ const Services = () => {
 
           <h2>Detailing Packages and Pricing</h2>
 
-          <div className="vehicle-size-selector">
-            <select 
-              value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value)}
-            >
-              {vehicleSizes.map((size) => (
-                <option key={size.value} value={size.value}>{size.label}</option>
-              ))}
-            </select>
-          </div>
-
           <div className="pricing-container">
-            {pricingData[selectedSize] && (
-              <PricingCard 
-                vehicleSize={vehicleSizes.find(size => size.value === selectedSize).label}
-                prices={pricingData[selectedSize].prices}
-                services={pricingData[selectedSize].services}
-              />
-            )}
+            <PricingCard prices={pricingData} />
           </div>
 
           <h3>Add-on Services</h3>
@@ -325,7 +221,7 @@ const Services = () => {
         </div>
         <Footer />
       </div>
-  </>
+    </>
   );
 }
 

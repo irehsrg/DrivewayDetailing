@@ -80,7 +80,6 @@ code {
   list-style: none;
   margin: 0;
   padding: 0;
-  z-index: 11;
 }
 
 .nav-links a {
@@ -89,6 +88,7 @@ code {
   font-weight: bold;
   font-size: 14px;
   transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
 }
 
 .nav-links a:hover {
@@ -369,64 +369,135 @@ footer {
 /* Responsive styles */
 @media (max-width: 768px) {
   .main-nav {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    height: 80px;
+  }
+
+  .menu-icon {
+    display: block;
   }
 
   .nav-links {
-    margin-top: 1rem;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-links a:hover {
+    color: #0094ff;
   }
 
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links.hide {
+    max-height: 0;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 768px) {
   .home-content {
-    padding-top: 30vh;
-    padding-left: 5%;
+    padding-top: 150px;
   }
 
-  .home-content h1 {
-    font-size: 2.5rem;
+  .about-hero h1,
+  .services-page h1,
+  .gallery-page h1,
+  .contact-page h1 {
+    margin-top: 100px;
   }
 
-  .home-content p {
-    font-size: 1.2rem;
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .social-media-sidebar {
-    position: static;
-    flex-direction: row;
-    justify-content: center;
-    padding: 1rem 0;
-    background-color: rgba(0,0,0,0.5);
+  .profile-pic {
+    margin-bottom: 1rem;
+  }
+
+  .service-card {
+    flex-direction: column;
+  }
+
+  .service-image img {
+    max-width: 100%;
   }
 
   .footer-content {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo-social {
+    margin-bottom: 2rem;
+  }
+
+  .footer-info {
+    flex-direction: column;
+    gap: 2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .main-nav {
-    padding: 1rem;
-  }
-
   .logo {
-    height: 3rem;
+    height: 60px;
   }
 
-  .nav-links li {
-    margin: 0 0.5rem;
+  .home-content {
+    padding-top: 120px;
   }
 
-  .home-content h1 {
+  .about-hero h1,
+  .services-page h1,
+  .gallery-page h1,
+  .contact-page h1 {
+    margin-top: 80px;
     font-size: 2rem;
   }
 
-  .home-content p {
-    font-size: 1rem;
+  .service-card h2 {
+    font-size: '3rem';
+     font-weight: 'bold';
+     margin-bottom: '1rem';
+     color: '#0094ff';
   }
 
-  .btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+  .pricing-container,
+  .addons-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-content {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .main-nav {
+    padding: 0.5rem 1rem;
   }
 }
 
@@ -472,10 +543,11 @@ footer {
   margin-bottom: 3rem;
 }
 
+/* Service card styles */
 .service-card {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto 4rem auto;
   max-width: 1000px;
@@ -503,6 +575,45 @@ footer {
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles for service cards */
+@media (max-width: 768px) {
+  .service-card {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .service-content {
+    padding-right: 0;
+    order: 2;
+  }
+
+  .service-image {
+    width: 100%;
+    order: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card {
+    padding: 1rem;
+  }
+
+  .service-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .service-content p,
+  .service-content ul {
+    font-size: 1rem;
+  }
 }
 
 .vehicle-size-selector {
@@ -717,7 +828,6 @@ footer {
   color: white;
 }
 
-/* Additional responsive styles */
 @media (max-width: 768px) {
   .service-card {
     flex-direction: column;

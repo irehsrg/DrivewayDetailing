@@ -28,7 +28,7 @@ const Footer = () => {
             <img src="/images/logo-transparent-png.png" alt="Driveway Detailing Logo" style={{ width: '150px', marginBottom: '1rem' }} />
           </Link>
           <div className="social-icons" style={{ display: 'flex', gap: '1rem' }}>
-            <a href="https://x.com/DwDetail" aria-label="Facebook"><FaFacebookF color="#4267B2"/></a>
+            <a href="https://www.facebook.com/profile.php?id=61566610701668" aria-label="Facebook"><FaFacebookF color="#4267B2"/></a>
             <a href="https://www.instagram.com/drivewaydetailing.tn/" aria-label="Instagram"><FaInstagram color="#E1306C"/></a>
             <a href="https://x.com/DwDetail" aria-label="Twitter"><FaTwitter color="#1DA1F2"/></a>
           </div>
